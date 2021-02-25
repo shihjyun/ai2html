@@ -115,7 +115,13 @@ function main() {
       "local_preview_template",
       "png_number_of_colors",
       "jpg_quality",
-      "tnl_project_name"
+      // tnl setting
+      "tnl_project_name",
+      "title",
+      "subtitle",
+      "credit",
+      "sources",
+      "notes"
     ],
   
     // list of settings to include in the config.yml file
@@ -140,8 +146,8 @@ function main() {
       {"aifont":"Georgia-Italic","family":"georgia,'times new roman',times,serif","weight":"","style":"italic"},
       {"aifont":"Georgia-BoldItalic","family":"georgia,'times new roman',times,serif","weight":"bold","style":"italic"},
       {"aifont":"NotoSansTC-Bold","family":"'Helvetica', 'Arial', 'Noto Sans TC', 'Heiti TC', 'Microsoft JhengHei',sans-serif","weight":"bold","style":"normal"},
-      {"aifont":"NotoSansTC-Medium","family":"'Helvetica', 'Arial', 'Noto Sans TC', 'Heiti TC', 'Microsoft JhengHei',sans-serif","weight":500,"style":"normal"},
-      {"aifont":"NotoSansTC-Regular","family":"'Helvetica', 'Arial', 'Noto Sans TC', 'Heiti TC', 'Microsoft JhengHei',sans-serif","weight":"regular","style":"normal"}
+      {"aifont":"NotoSansTC-Medium","family":"'Helvetica', 'Arial', 'Noto Sans TC', 'Heiti TC', 'Microsoft JhengHei',sans-serif","weight":'500',"style":"normal"},
+      {"aifont":"NotoSansTC-Regular","family":"'Helvetica', 'Arial', 'Noto Sans TC', 'Heiti TC', 'Microsoft JhengHei',sans-serif","weight":"400","style":"normal"}
     ],
   
     // Width ranges for responsive breakpoints (obsolete, will be removed)
@@ -367,7 +373,8 @@ function main() {
     'text-transform',
     'mix-blend-mode',
     'vertical-align', // for superscript
-    'transform' // tnl-setting
+    'transform', // tnl-setting
+    'transform-origin' // tnl-setting
   ];
   
   var cssPrecision = 4;
@@ -2526,8 +2533,9 @@ function main() {
       cssStyle['vertical-align'] = 'super';
     }
     if (fontSize < 12) {
-      cssStyle['font-size'] = fontSize + 'px';
+      cssStyle['font-size'] = '12px';
       cssStyle['transform'] = 'scale(' +  Math.round((fontSize / 12) * 100) / 100 + ')';
+      cssStyle['transform-origin'] = 'center left'
     } else {
       cssStyle['font-size'] = fontSize + 'px';
     }
@@ -4115,6 +4123,8 @@ function main() {
     var responsiveJs = '';
     var containerId = nameSpace + pageName + '-box';
     var textForFile, html, js, css, commentBlock;
+    // tnl var
+    var title, subtitle, credit, sources, notes, figCaption, logo
     var htmlFileDestinationFolder, htmlFileDestination;
   
     progressBar.setTitle('Writing HTML output...');
@@ -4155,7 +4165,49 @@ function main() {
     // JS
     js = content.js + responsiveJs;
   
-    textForFile =  '\r' + commentBlock + css + '\r' + html + '\r' + js +
+    // tnl meta setting
+    if (settings.title) {
+      title = '<h3 class="chart-title">' + settings.title + '</h3>'
+    } else {
+      title = ''
+    }
+  
+    if (settings.subtitle) {
+      subtitle = '<p class="chart-subtitle">' + settings.subtitle + '</p>'
+    } else {
+      subtitle = ''
+    }
+  
+    if (settings.credit) {
+      credit = '<p class="chart-credit">\r' + settings.credit + '\r</p>\r'
+    } else {
+      credit = ''
+    }
+  
+    if (settings.sources) {
+      sources = '<p class="chart-sources">\r' + settings.sources + '\r</p>\r'
+    } else {
+      sources = ''
+    }
+  
+    if (settings.notes) {
+      notes = '<p class="chart-notes">\r' + settings.notes + '\r</p>\r'
+    } else {
+      notes = ''
+    }
+  
+    if (settings.notes || settings.sources || settings.credit) {
+      logo = '<img class="tnl-chart-logo" src="https://image3.thenewslens.com/assets/web/logo.png" >\r'
+    } else {
+      logo = ''
+    }
+  
+    figCaption = '<figcaption class="ai2html-figcaption">\r' + logo + sources + credit  +  notes +'\r</figcaption>\r'
+    
+  
+    
+  
+    textForFile =  '\r' + commentBlock + '\r' + title + '\r' + '\r' + subtitle + '\r' +  css + '\r' + html + '\r' + js + '\r' + figCaption
        '<!-- End ai2html' + ' - ' + getDateTimeStamp() + ' -->\r';
   
     textForFile = applyTemplate(textForFile, settings);
