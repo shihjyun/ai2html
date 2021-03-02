@@ -121,7 +121,8 @@ function main() {
       "subtitle",
       "credit",
       "sources",
-      "notes"
+      "notes",
+      "logo"
     ],
   
     // list of settings to include in the config.yml file
@@ -4196,7 +4197,7 @@ function main() {
       notes = ''
     }
   
-    if (settings.notes || settings.sources || settings.credit) {
+    if (settings.notes || settings.sources || settings.credit && settings.logo === 'yes') {
       logo = '<img class="tnl-chart-logo" src="https://image3.thenewslens.com/assets/web/logo.png" >\r'
     } else {
       logo = ''
