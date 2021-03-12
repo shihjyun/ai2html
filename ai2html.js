@@ -146,9 +146,21 @@ function main() {
       {"aifont":"Georgia-Bold","family":"georgia,'times new roman',times,serif","weight":"bold","style":""},
       {"aifont":"Georgia-Italic","family":"georgia,'times new roman',times,serif","weight":"","style":"italic"},
       {"aifont":"Georgia-BoldItalic","family":"georgia,'times new roman',times,serif","weight":"bold","style":"italic"},
-      {"aifont":"NotoSansTC-Bold","family":"'Helvetica', 'Arial', 'Noto Sans TC', 'Heiti TC', 'Microsoft JhengHei',sans-serif","weight":"bold","style":"normal"},
-      {"aifont":"NotoSansTC-Medium","family":"'Helvetica', 'Arial', 'Noto Sans TC', 'Heiti TC', 'Microsoft JhengHei',sans-serif","weight":'500',"style":"normal"},
-      {"aifont":"NotoSansTC-Regular","family":"'Helvetica', 'Arial', 'Noto Sans TC', 'Heiti TC', 'Microsoft JhengHei',sans-serif","weight":"400","style":"normal"}
+      {"aifont":"NotoSansTC-Bold","family":"'Noto Sans TC', 'Heiti TC', 'Microsoft JhengHei',sans-serif","weight":"700","style":"normal"},
+      {"aifont":"NotoSansTC-Medium","family":"'Noto Sans TC', 'Heiti TC', 'Microsoft JhengHei',sans-serif","weight":"500","style":"normal"},
+      {"aifont":"NotoSansTC-Regular","family":"'Noto Sans TC', 'Heiti TC', 'Microsoft JhengHei',sans-serif","weight":"400","style":"normal"},
+      {"aifont":"SourceHanSansTW-Light","family":"'Noto Sans TC', 'Heiti TC', 'Microsoft JhengHei',sans-serif","weight":"200","style":"normal"},
+      {"aifont":"SourceHanSansTW-Regular","family":"'Noto Sans TC', 'Heiti TC', 'Microsoft JhengHei',sans-serif","weight":"400","style":"normal"},
+      {"aifont":"SourceHanSansTW-Medium","family":"'Noto Sans TC', 'Heiti TC', 'Microsoft JhengHei',sans-serif","weight":"500","style":"normal"},
+      {"aifont":"SourceHanSansTW-Bold","family":"'Noto Sans TC', 'Heiti TC', 'Microsoft JhengHei',sans-serif","weight":"700","style":"normal"},
+      {"aifont":"NotoSansTC-Regular","family":"'Noto Sans TC', 'Heiti TC', 'Microsoft JhengHei',sans-serif","weight":"400","style":"normal"},
+      {"aifont":"NotoSansTC-Medium","family":"'Noto Sans TC', 'Heiti TC', 'Microsoft JhengHei',sans-serif","weight":"500","style":"normal"},
+      {"aifont":"NotoSansCJKtc-Bold","family":"'Noto Sans TC', 'Heiti TC', 'Microsoft JhengHei',sans-serif","weight":"700","style":"normal"},
+      {"aifont":"Helvetica-Light","family":"'helvetica","weight":"200","style":"normal"},
+      {"aifont":"Helvetica","family":"'helvetica","weight":"400","style":"normal"},
+      {"aifont":"Helvetica-Medium","family":"'helvetica","weight":"500","style":"normal"},
+      {"aifont":"Helvetica-Bold","family":"'helvetica","weight":"700","style":"normal"},
+
     ],
   
     // Width ranges for responsive breakpoints (obsolete, will be removed)
@@ -2536,7 +2548,7 @@ function main() {
     if (fontSize < 12) {
       cssStyle['font-size'] = '12px';
       cssStyle['transform'] = 'scale(' +  Math.round((fontSize / 12) * 100) / 100 + ')';
-      cssStyle['transform-origin'] = 'center left'
+      cssStyle['transform-origin'] = 'center center'
     } else {
       cssStyle['font-size'] = fontSize + 'px';
     }
